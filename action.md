@@ -314,7 +314,7 @@ Voici ta base corrigée avec les bons mots-clés officiels, tout en gardant tes 
 ```yaml
 name: Démo GitHub Actions
 
-run-name: ${{ github.actor }} teste GitHub Actions 🚀
+run-name: ${{ .github.actor }} teste GitHub Actions 🚀
 
 on: [push]
 
@@ -322,14 +322,14 @@ jobs:
   Explorer-Actions-GitHub:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 La tâche a été automatiquement déclenchée par un événement ${{ github.event_name }}."
+      - run: echo "🎉 La tâche a été automatiquement déclenchée par un événement ${{ .github.event_name }}."
       - run: echo "🐧 Cette tâche est maintenant en cours d'exécution sur un serveur ${{ runner.os }} hébergé par GitHub!"
-      - run: echo "🔎 Le nom de votre branche est ${{ github.ref }} et votre dépôt est ${{ github.repository }}."
+      - run: echo "🔎 Le nom de votre branche est ${{ .github.ref }} et votre dépôt est ${{ .github.repository }}."
       
       - name: Consulter le code du dépôt
         uses: actions/checkout@v4 # Utilisation de la version v4 stable actuelle
         
-      - run: echo "💡 Le dépôt ${{ github.repository }} a été cloné sur le runner."
+      - run: echo "💡 Le dépôt ${{ .github.repository }} a été cloné sur le runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       
       - name: List files in the repository
