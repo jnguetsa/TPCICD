@@ -1,0 +1,23 @@
+name: multi-job.yml
+on: [push]
+
+jobs:
+  job-preparation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+      - name: Etape de preparation
+        run: echo " Preparation et verification de l'environnement"
+  jobs-test:
+    needs: job-preparation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lancement du tests
+        run: echo " Execution des tests unitaires encours"
+  jobs-deploiement:
+    needs: jobs-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Message de fin
+        run: echo " Pipeline terminer avec succes"
